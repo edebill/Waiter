@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  weight: 1.5
+  systolic: 1
+  diastolic: 1
+  bpm: 1
+  user_id: 1
+
+two:
+  weight: 1.5
+  systolic: 1
+  diastolic: 1
+  bpm: 1
+  user_id: 1

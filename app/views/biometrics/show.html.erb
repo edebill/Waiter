@@ -1,0 +1,30 @@
+<p class="notice"><%= notice %></p>
+
+<p>
+  <b>Weight:</b>
+  <%= @biometric.weight %>
+</p>
+
+<p>
+  <b>Systolic:</b>
+  <%= @biometric.systolic %>
+</p>
+
+<p>
+  <b>Diastolic:</b>
+  <%= @biometric.diastolic %>
+</p>
+
+<p>
+  <b>Bpm:</b>
+  <%= @biometric.bpm %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @biometric.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_biometric_path(@biometric) %> |
+<%= link_to 'Back', biometrics_path %>

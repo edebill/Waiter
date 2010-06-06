@@ -1,4 +1,13 @@
 Waiter::Application.routes.draw do |map|
+  resources :biometrics
+
+  get "home/index"
+  post "home/record"
+
+  devise_for :users
+
+  root :to => "home#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

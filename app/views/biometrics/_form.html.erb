@@ -1,0 +1,40 @@
+<%= form_for(@biometric) do |f| %>
+  <% if @biometric.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@biometric.errors.count, "error") %> prohibited this biometric from being saved:</h2>
+    <ul>
+    <% @biometric.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :record_date %><br />
+    <%= f.text_field :record_date %>
+  </div>
+  <div class="field">
+    <%= f.label :weight %><br />
+    <%= f.text_field :weight %>
+  </div>
+  <div class="field">
+    <%= f.label :systolic %><br />
+    <%= f.text_field :systolic %>
+  </div>
+  <div class="field">
+    <%= f.label :diastolic %><br />
+    <%= f.text_field :diastolic %>
+  </div>
+  <div class="field">
+    <%= f.label :bpm %><br />
+    <%= f.text_field :bpm %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

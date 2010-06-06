@@ -1,0 +1,61 @@
+body {
+   background-color: #f0f8ff;
+}
+
+#header {
+    position: relative;
+    padding: 10px;
+
+    background-color: #e0f0ff;
+    border-bottom: 1px black solid;
+}
+
+#sitename {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#sitename a {
+    text-decoration: none;
+}
+
+
+#menu {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+div.menuitem {
+    float: right;
+    padding: 10px 10px 10px 10px;
+//    border-left: 1px black solid;
+}
+
+
+
+#content {
+    position: relative;
+    padding: 15px;
+    padding-bottom: 30px;
+    background-color: #f0f8ff;
+    min-height: 300px;
+}
+
+
+#footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+
+    border-top: 1px black solid;
+    background-color: #e0f0ff;
+}
+
+#copyright {
+    float: right;
+
+    padding-right: 15px;
+    font-size: 8px;
+}
+

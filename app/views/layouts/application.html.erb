@@ -3,12 +3,34 @@
 <head>
   <title>Waiter</title>
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <%= stylesheet_link_tag "layout" %>
   <%= csrf_meta_tag %>
 </head>
 <body>
+<div id="header">
+  <div id="sitename">
+    <%= link_to "Waiter", root_url() %>
+  </div>
+  <div id="menu">
+    <div class="menuitem">
+      <% if user_signed_in?  %>
+        Signed in as <%= current_user.email %>. Not you?
+        <%= link_to "Sign out", destroy_user_session_path %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div id="content" >
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-<%= yield %>
-
+  <%= yield %>
+</div><div id="footer">
+  <div id="copyright">
+    &copy;<a href="http://erik.debill.org">Erik DeBill</a>, 2010
+  </div>
+</div>
 </body>
 </html>
