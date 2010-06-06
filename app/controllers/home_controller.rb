@@ -7,6 +7,8 @@ class HomeController < ApplicationController
 
       now = Time.now
       @biometric = current_user.biometrics.build(:record_date => now)
+    else
+      render :template => "home/logged_out"
     end
   end
 
