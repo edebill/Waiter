@@ -2,11 +2,11 @@
 
 <table>
   <tr>
+    <th>Date</th>
     <th>Weight</th>
     <th>Systolic</th>
     <th>Diastolic</th>
     <th>Bpm</th>
-    <th>User</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,11 +14,11 @@
 
 <% @biometrics.each do |biometric| %>
   <tr>
+    <td><%= biometric.record_date %></td>
     <td><%= biometric.weight %></td>
     <td><%= biometric.systolic %></td>
     <td><%= biometric.diastolic %></td>
     <td><%= biometric.bpm %></td>
-    <td><%= biometric.user_id %></td>
     <td><%= link_to 'Show', biometric %></td>
     <td><%= link_to 'Edit', edit_biometric_path(biometric) %></td>
     <td><%= link_to 'Destroy', biometric, :confirm => 'Are you sure?', :method => :delete %></td>
