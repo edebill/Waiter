@@ -1,8 +1,10 @@
 class BiometricsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /biometrics
   # GET /biometrics.xml
   def index
-    @biometrics = Biometric.all
+    @biometrics = current_user.biometrics
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +15,8 @@ class BiometricsController < ApplicationController
   # GET /biometrics/1
   # GET /biometrics/1.xml
   def show
-    @biometric = Biometric.find(params[:id])
+    @biometric = Biometric.where(:user_id => current_user.id,
+                                 :id => params[:id]).first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,13 +37,14 @@ class BiometricsController < ApplicationController
 
   # GET /biometrics/1/edit
   def edit
-    @biometric = Biometric.find(params[:id])
+    @biometric = Biometric.where(:user_id => current_user.id,
+                                 :id => params[:id]).first
   end
 
   # POST /biometrics
   # POST /biometrics.xml
   def create
-    @biometric = Biometric.new(params[:biometric])
+    @biometric = current_user.biometrics.build(params[:biometric])
 
     respond_to do |format|
       if @biometric.save
@@ -56,7 +60,8 @@ class BiometricsController < ApplicationController
   # PUT /biometrics/1
   # PUT /biometrics/1.xml
   def update
-    @biometric = Biometric.find(params[:id])
+    @biometric = Biometric.where(:user_id => current_user.id,
+                                 :id => params[:id]).first
 
     respond_to do |format|
       if @biometric.update_attributes(params[:biometric])
@@ -72,7 +77,8 @@ class BiometricsController < ApplicationController
   # DELETE /biometrics/1
   # DELETE /biometrics/1.xml
   def destroy
-    @biometric = Biometric.find(params[:id])
+    @biometric = Biometric.where(:user_id => current_user.id,
+                                 :id => params[:id]).first
     @biometric.destroy
 
     respond_to do |format|
