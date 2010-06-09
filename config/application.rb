@@ -23,6 +23,7 @@ module Waiter
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+    ActionMailer::Base.smtp_settings[:enable_starttls_auto] = false
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
