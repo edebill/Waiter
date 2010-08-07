@@ -4,7 +4,7 @@
     console.log("rendering weight graph");
     var d = [
 <% @biometrics.each do |datapoint| %>
-    [<%=h datapoint.record_date.to_i %>, <%=h datapoint.weight %>],
+    [<%=h datapoint.record_date.to_i %>000, <%=h datapoint.weight %>],
 <% end %>];
 
     $.plot($("#placeholder"), [d], {
