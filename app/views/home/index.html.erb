@@ -1,34 +1,23 @@
+<script type="text/javascript">
+    $(function() {
+          $("#tabs").tabs();
+          $("#tabs").bind('tabsshow', function(event, ui) {
+               if (ui.index == 1) {
+                  show_weight_graph();
+                }
+          });
+   });
+</script>
+<div id="tabs">
+    <ul>
+         <li><a href="#home">home</a></li>
+         <li><a href="#weight_graph">weight</a></li>
+   </ul>
 
-<%= form_for @biometric, :url => { :controller => "home", :action => "record" }  do |f| %>
-
-<table class="biometric_data">
-  <tr>
-    <td>Date</td>
-    <td>Weight</td>
-    <td>Systolic</td>
-    <td>Diastolic</td>
-    <td>BPM</td>
-    <td></td>
-  </tr>
-<% @biometrics.each do |b| %>
-  <% unless b.new_record? %>
-  <tr>
-    <td><%= b.record_date.to_date %></td>
-    <td><%= b.weight %></td>
-    <td><%= b.systolic %></td>
-    <td><%= b.diastolic %></td>
-    <td><%= b.bpm %></td>
-    <td><%= link_to "edit", b %></td>
-  </tr>
-  <% end %>
-<% end %>
-  <tr>
-    <td><%= f.text_field :record_date, :value => @biometric.record_date.to_date %></td>
-    <td><%= f.text_field :weight, :maxlength => 5 %></td>
-    <td><%= f.text_field :systolic, :maxlength => 5 %></td>
-    <td><%= f.text_field :diastolic, :maxlength => 5 %></td>
-    <td><%= f.text_field :bpm, :maxlength => 5 %></td>
-    <td><%= f.submit "Record" %></td>
-  </tr>
-</table>
-<% end %>
+  <div id="home">
+          <%= render :partial => "data_entry_tab" %>
+   </div>
+   <div id="weight_graph">
+          <%= render :partial => "weight_graph_tab" %>
+   </div>
+</div>
