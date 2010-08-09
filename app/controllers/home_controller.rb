@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
     if user_signed_in?
-      @biometrics = Biometric.where(:user_id => current_user.id).order('record_date desc')
+      @biometrics = Biometric.where(:user_id => current_user.id).order('record_date asc')
 
       now = Time.now
       @biometric = current_user.biometrics.build(:record_date => now)

@@ -1,4 +1,4 @@
-<% last_14 = @biometrics.reverse[0..13] %>
+<% last_14 = @biometrics.reverse[0..13].reverse %>
 <%= form_for @biometric, :url => { :controller => "home", :action => "record" }  do |f| %>
 
 <table class="biometric_data">
