@@ -1,16 +1,13 @@
 <div id="placeholder" style="width:600px;height:300px;"></div>
 <script id="source">
     function show_weight_graph() {
-    console.log("rendering weight graph");
-    var d = [
-<% @biometrics.each do |datapoint| %>
-    [<%=h datapoint.record_date.to_i %>000, <%=h datapoint.weight %>],
-<% end %>];
-
-    $.plot($("#placeholder"), [d], {
-        xaxis: {
-            mode: "time"
-        }
-    });
-}
+        console.log("rendering weight graph");
+        $.getJSON("/biometrics/weight.json", function(data) {
+            $.plot($("#placeholder"), [data], {
+                xaxis: {
+                    mode: "time"
+                }   
+            });
+        });
+    }
 </script>

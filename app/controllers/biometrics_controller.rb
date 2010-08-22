@@ -12,6 +12,22 @@ class BiometricsController < ApplicationController
     end
   end
 
+  # GET /biometrics/weight.json
+  # GET /biometrics/weight.csv
+  def weight
+    @biometrics = Biometric.select("weight, record_date").where(:user_id => current_user.id).order(:record_date)
+
+    respond_to do |format|
+      format.json { render :json => @biometrics.collect { |b| [b.record_date.to_i * 1000, b.weight] } }
+      format.xml  { render :xml => @biometrics }
+      format.csv  { 
+        csv = @biometrics.collect { |b| [b.record_date, b.weight].to_csv }
+        render :content_type => 'text/csv', :text => csv.join("")
+      }
+    end
+  end
+
+
   # GET /biometrics/1
   # GET /biometrics/1.xml
   def show

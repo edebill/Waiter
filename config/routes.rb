@@ -1,5 +1,4 @@
 Waiter::Application.routes.draw do |map|
-  resources :biometrics
 
   get "home/index"
   post "home/record"
@@ -21,6 +20,15 @@ Waiter::Application.routes.draw do |map|
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
+
+  resources :biometrics do
+    collection do
+      get :weight
+      get :heartrate
+      get :systolic
+      get :diastolic
+    end
+  end
 
   # Sample resource route with options:
   #   resources :products do
