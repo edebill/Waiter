@@ -48,6 +48,7 @@ class BiometricsController < ApplicationController
   # GET /biometrics/1
   # GET /biometrics/1.xml
   def show
+    Rails.logger.debug("current_user.id = #{current_user.id}")
     @biometric = Biometric.where(:user_id => current_user.id,
                                  :id => params[:id]).first
 
@@ -96,6 +97,7 @@ class BiometricsController < ApplicationController
     @biometric = Biometric.where(:user_id => current_user.id,
                                  :id => params[:id]).first
 
+    params[:biometric].delete(:user_id)   # make sure they don't change this
     respond_to do |format|
       if @biometric.update_attributes(params[:biometric])
         format.html { redirect_to(@biometric, :notice => 'Biometric was successfully updated.') }
