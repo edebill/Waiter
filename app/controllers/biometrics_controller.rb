@@ -12,6 +12,23 @@ class BiometricsController < ApplicationController
     end
   end
 
+  # GET /biometrics/all.json
+  # GET /biometrics/all.csv
+  def all
+    @biometrics = Biometric.select("systolic, diastolic, bpm, weight, record_date").where(:user_id => current_user.id).order(:record_date)
+
+    respond_to do |format|
+      format.xml  { render :xml => @biometrics }
+      format.csv  { 
+        csv = @biometrics.collect { |b| [b.record_date, b.weight, b.systolic, b.diastolic, b.bpm].to_csv }
+        csv.unshift ["record date","weight","systolic","diastolic","bpm"].to_csv
+
+        render :content_type => 'text/csv', :text =>  csv.join("")
+      }
+    end
+  end
+
+
   # GET /biometrics/weight.json
   # GET /biometrics/weight.csv
   def weight

@@ -23,6 +23,7 @@ Waiter::Application.routes.draw do |map|
 
   resources :biometrics do
     collection do
+      get :all
       get :weight
       get :heartrate
       get :systolic
