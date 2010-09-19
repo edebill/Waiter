@@ -27,6 +27,8 @@ group :test, :development do
   gem 'shoulda'
   gem 'factory_girl_rails'
 #  gem 'ruby-debug'
+  gem 'email_spec'
+  gem 'launchy'            # can pop a browser with 'Then show me the page'
 end
 
 group :cucumber do
@@ -37,9 +39,10 @@ group :cucumber do
   gem 'rspec-rails', '= 2.0.0.beta.20'
   gem 'spork'
 #  gem 'linecache19'
-#  gem 'launchy'            # can pop a browser with 'Then show me the page'
+  gem 'launchy'            # can pop a browser with 'Then show me the page'
   gem 'factory_girl_rails'
 #  gem 'ruby-debug'
+  gem 'email_spec'
 end
 
 # group :test do
