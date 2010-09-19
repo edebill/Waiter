@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.rc'
+gem 'rails', '3.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -21,9 +21,26 @@ gem 'memcache-client', :require => 'memcache'
 # gem 'aws-s3', :require => 'aws/s3'
 gem 'devise', '1.1.rc1'
 
-# Bundle gems for certain environments:
-gem 'rspec'
-gem 'rspec-rails', '2.0.0.beta.10'
+
+group :test, :development do
+  gem 'rspec-rails', '= 2.0.0.beta.20'
+  gem 'shoulda'
+  gem 'factory_girl_rails'
+#  gem 'ruby-debug'
+end
+
+group :cucumber do
+  gem 'capybara'           # better than webrat
+  gem 'database_cleaner'   # clean database between tests
+  gem 'cucumber-rails'
+  gem 'cucumber'
+  gem 'rspec-rails', '= 2.0.0.beta.20'
+  gem 'spork'
+#  gem 'linecache19'
+#  gem 'launchy'            # can pop a browser with 'Then show me the page'
+  gem 'factory_girl_rails'
+#  gem 'ruby-debug'
+end
 
 # group :test do
 #   gem 'webrat'
