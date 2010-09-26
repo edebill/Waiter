@@ -1,5 +1,5 @@
 <% last_14 = @biometrics.reverse[0..13].reverse %>
-<%= form_for @biometric, :url => { :controller => "home", :action => "record" }  do |f| %>
+<%= form_for @biometric  do |f| %>
 
 <table class="biometric_data">
   <tr>
@@ -23,7 +23,11 @@
   <% end %>
 <% end %>
   <tr>
+  <% if @biometric.record_date.nil? %>
+    <td><%= f.text_field :record_date, :value => "now" %></td>
+  <% else %>
     <td><%= f.text_field :record_date, :value => @biometric.record_date.to_date %></td>
+  <% end %>
     <td><%= f.text_field :weight, :maxlength => 5 %></td>
     <td><%= f.text_field :systolic, :maxlength => 5 %></td>
     <td><%= f.text_field :diastolic, :maxlength => 5 %></td>

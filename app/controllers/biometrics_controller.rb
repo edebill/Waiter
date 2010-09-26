@@ -1,5 +1,6 @@
 class BiometricsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :handle_now, :only => [ :create, :update]
 
   # GET /biometrics
   # GET /biometrics.xml
@@ -71,6 +72,7 @@ class BiometricsController < ApplicationController
 
   # GET /biometrics/1/edit
   def edit
+
     @biometric = Biometric.where(:user_id => current_user.id,
                                  :id => params[:id]).first
   end
@@ -78,6 +80,7 @@ class BiometricsController < ApplicationController
   # POST /biometrics
   # POST /biometrics.xml
   def create
+
     @biometric = current_user.biometrics.build(params[:biometric])
 
     respond_to do |format|
@@ -85,7 +88,12 @@ class BiometricsController < ApplicationController
         format.html { redirect_to(root_url, :notice => 'Biometric data was successfully recorded.') }
         format.xml  { render :xml => @biometric, :status => :created, :location => @biometric }
       else
-        format.html { render :controller => "home", :action => "index" }
+        format.html {
+          @biometrics = Biometric.where(:user_id => current_user.id).order('record_date asc')
+          logger.debug(@biometric.errors.full_messages)
+          flash[:alert] = @biometric.errors.full_messages
+          render :template => "home/index"
+        }
         format.xml  { render :xml => @biometric.errors, :status => :unprocessable_entity }
       end
     end
@@ -94,6 +102,7 @@ class BiometricsController < ApplicationController
   # PUT /biometrics/1
   # PUT /biometrics/1.xml
   def update
+
     @biometric = Biometric.where(:user_id => current_user.id,
                                  :id => params[:id]).first
 
@@ -121,4 +130,14 @@ class BiometricsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+
+  protected
+
+  def handle_now
+    if params[:biometric][:record_date] == "now"
+      params[:biometric][:record_date] = Time.now
+    end
+  end
+
 end
