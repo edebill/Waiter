@@ -27,8 +27,24 @@
   </div>
 </div>
 <div id="content" >
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <% if notice.respond_to? :each %>
+    <ul class="notice">
+    <% notice.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+    </ul>
+  <% else %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
+  <% if alert.respond_to? :each %>
+    <ul class="alert">
+    <% alert.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+    </ul>
+  <% else %>
+    <p class="alert"><%= alert %></p>
+  <% end %>
 
   <%= yield %>
 </div><div id="footer">
