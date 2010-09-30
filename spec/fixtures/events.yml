@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  event_date: 2010-09-29 20:50:12
+  quantity: 1.5
+  description: MyString
+
+two:
+  user_id: 1
+  event_date: 2010-09-29 20:50:12
+  quantity: 1.5
+  description: MyString

@@ -4,8 +4,10 @@ class HomeController < ApplicationController
 
       @biometrics = Biometric.where(:user_id => current_user.id).order('record_date asc')
 
-      @biometric = current_user.biometrics.build(:record_date => "now")
+      @biometric = current_user.biometrics.build()
 
+      @events =  Event.where(:user_id => current_user.id).order('event_date asc')
+      @event = current_user.events.build()
     else
 
       render :template => "home/logged_out"

@@ -1,0 +1,35 @@
+<% last_14 = @events.reverse[0..13].reverse %>
+<%= form_for @event  do |f| %>
+
+<table class="event_data">
+  <tr>
+    <th>Date</th>
+    <th>Quantity</th>
+    <th>Description</th>
+  </tr>
+
+  <% last_14.each do |e| %>
+  <% unless e.new_record? %>
+  <tr>
+    <td><%= e.event_date %></td>
+    <td><%= e.quantity %></td>
+    <td><%= e.description %></td>
+  </tr>
+  <% end %>
+  <% end %>
+
+  <tr>
+  <% if @event.event_date.nil? %>
+    <td><%= f.text_field :event_date, :value => "now" %></td>
+  <% else %>
+    <td><%= f.text_field :event_date, :value => @event.event_date.to_date %></td>
+  <% end %>
+    <td><%= f.text_field :quantity, :maxlength => 5 %></td>
+    <td><%= f.text_field :description, :maxlength => 45 %></td>
+    <td><%= f.submit "Record" %></td>
+  </tr>
+</table>
+<% end %>
+<p>
+download as <a href="/biometrics/all.csv">CSV</a>
+or <a href="/biometrics/all.xml">XML</a>.
