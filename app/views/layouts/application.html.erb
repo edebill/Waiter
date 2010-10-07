@@ -27,25 +27,12 @@
   </div>
 </div>
 <div id="content" >
-  <% if notice.respond_to? :each %>
-    <ul class="notice">
-    <% notice.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-    </ul>
-  <% else %>
-    <p class="notice"><%= notice %></p>
-  <% end %>
-  <% if alert.respond_to? :each %>
-    <ul class="alert">
-    <% alert.each do |error| %>
-      <li><%= error %></li>
-    <% end %>
-    </ul>
-  <% else %>
-    <p class="alert"><%= alert %></p>
-  <% end %>
+  <div id="notifications">
+    <% logger.debug("notice is #{notice} - #{notice.inspect}") %>
+    <%= render "common/notifications", :messages => notice, :type => "notice"  %>
+    <%= render "common/notifications", :messages => alert, :type => "alert"  %>
 
+  </div>
   <%= yield %>
 </div><div id="footer">
   <div id="copyright">

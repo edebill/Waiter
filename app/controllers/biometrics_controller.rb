@@ -90,6 +90,9 @@ class BiometricsController < ApplicationController
       else
         format.html {
           @biometrics = Biometric.where(:user_id => current_user.id).order('record_date asc')
+          @events =  Event.where(:user_id => current_user.id).order('event_date asc')
+          @event = current_user.events.build()
+
           logger.debug(@biometric.errors.full_messages)
           flash[:alert] = @biometric.errors.full_messages
           render :template => "home/index"

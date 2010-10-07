@@ -7,4 +7,6 @@ class Biometric < ActiveRecord::Base
   validates_numericality_of :diastolic, :allow_nil => true
 
   validates_numericality_of :bpm, :allow_nil => true
+
+  validates_with BiometricValidator
 end
