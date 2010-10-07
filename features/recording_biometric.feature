@@ -14,5 +14,4 @@ Feature: Recording biometric data
     And I press "Record"
     
     Then I should see "123.4"
-    Then show me the page
     And I should get a notice containing "successfully recorded."
