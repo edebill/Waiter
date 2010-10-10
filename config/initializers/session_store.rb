@@ -8,7 +8,7 @@ Rails.application.config.session_store :mem_cache_store, {
   :cache => CACHE,
   :session_key => '_waiter_session',
   :secret => 'kWleS2hzWDvvEHYj1bK5ZYo8as098asdf3098sfkhjzv7KSHVB',
-  :expire_after => 60
+  :expire_after => 172800
 }
 
 
