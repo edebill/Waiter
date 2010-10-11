@@ -1,14 +1,6 @@
 <% logger.debug("messages - #{messages} / #{messages.inspect}") %>
 <% unless messages.blank? %>
   <div class="<%= type %>-block">
-    <% if messages.respond_to? :each %>
-      <ul class="<%= type %>">
-      <% messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    <% else %>
-      <p class="<%= type %>"><%= messages %></p>
-    <% end %>
+    <p class="<%= type %>"><%= messages %></p>
   </div>
 <% end %>
