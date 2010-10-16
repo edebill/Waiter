@@ -56,6 +56,7 @@ class BiometricsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @biometric }
+      format.json  { render :json => @biometric }
     end
   end
 
@@ -87,6 +88,7 @@ class BiometricsController < ApplicationController
       if @biometric.save
         format.html { redirect_to(root_url, :notice => 'Biometric data was successfully recorded.') }
         format.xml  { render :xml => @biometric, :status => :created, :location => @biometric }
+        format.json { render :json => @biometric, :status => :created, :location => @biometric }
       else
         format.html {
           @biometrics = Biometric.where(:user_id => current_user.id).order('record_date asc')
@@ -98,6 +100,7 @@ class BiometricsController < ApplicationController
           render :template => "home/index"
         }
         format.xml  { render :xml => @biometric.errors, :status => :unprocessable_entity }
+        format.json { render :json => @biometric.errors, :status => :unprocessable_entity }
       end
     end
   end

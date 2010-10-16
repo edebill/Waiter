@@ -1,4 +1,37 @@
 <% last_14 = @biometrics.reverse[0..13].reverse %>
+<script>
+
+  function addBiometric(biometric) {
+
+    $('#biometric_form_row').prev().after("<tr><td>" + formatDate(biometric["record_date"]) +
+         "</td><td>" + blankIfNull(biometric["weight"]) +
+         "</td><td>" + blankIfNull(biometric["systolic"]) +
+         "</td><td>" + blankIfNull(biometric["diastolic"]) +
+         "</td><td>" + blankIfNull(biometric["bpm"]) +
+         "</td><td><a href='/biometrics/" + biometric["id"] + "'>edit</a>" +
+
+         "</td></tr>");
+  }
+
+  function clearBiometricForm() {
+    $('#biometric_weight').val('');
+    $('#biometric_systolic').val('');
+    $('#biometric_diastolic').val('');
+    $('#biometric_bpm').val('');
+  }
+
+  $(document).ready(function() {
+    $('#biometric_button').bind('click', function () { 
+        $.post("/biometrics", $("#new_biometric").serialize(),function(data){
+           console.log(data);
+           addBiometric(data['biometric']);
+           clearBiometricForm();
+          }, "json");
+        return false;
+       });
+  });
+
+</script>
 <%= form_for @biometric  do |f| %>
 
 <table class="biometric_data">
@@ -22,7 +55,7 @@
   </tr>
   <% end %>
 <% end %>
-  <tr>
+  <tr id="biometric_form_row">
   <% if @biometric.record_date.nil? %>
     <td><%= f.text_field :record_date, :value => "now" %></td>
   <% else %>
@@ -32,7 +65,7 @@
     <td><%= f.text_field :systolic, :maxlength => 5 %></td>
     <td><%= f.text_field :diastolic, :maxlength => 5 %></td>
     <td><%= f.text_field :bpm, :maxlength => 5 %></td>
-    <td><%= f.submit "Record" %></td>
+    <td><%= f.submit "Record", :id => "biometric_button" %></td>
   </tr>
 </table>
 <% end %>

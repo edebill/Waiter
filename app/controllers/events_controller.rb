@@ -23,6 +23,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @event }
+      format.json { render :json => @event }
     end
   end
 
@@ -34,6 +35,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @event }
+      format.json { render :json => @event }
     end
   end
 
@@ -51,9 +53,11 @@ class EventsController < ApplicationController
       if @event.save
         format.html { redirect_to(root_url, :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
+        format.json { render :json => @event, :status => :created, :location => @event }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
+        format.json { render :json => @event }
       end
     end
   end

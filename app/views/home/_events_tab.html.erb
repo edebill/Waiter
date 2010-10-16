@@ -1,4 +1,30 @@
 <% last_14 = @events.reverse[0..13].reverse %>
+<script>
+
+  function addEvent(event) {
+    $('#event_form_row').prev().after("<tr><td>" + event["created_at"] +
+         "</td><td>" + blankIfNull(event["quantity"]) +
+         "</td><td>" + blankIfNull(event["description"]) +
+     "</td></tr>");
+  }
+
+  function clearEventForm() {
+    $('#event_quantity').val('');
+    $('#event_description').val('');
+  }
+
+  $(document).ready(function() {
+    $('#event_button').bind('click', function () { 
+        $.post("/events", $("#new_event").serialize(),function(data){
+           console.log(data);
+           addEvent(data['event']);
+           clearEventForm();
+          }, "json");
+        return false;
+       });
+  });
+
+</script>
 <%= form_for @event  do |f| %>
 
 <table class="event_data">
@@ -18,18 +44,22 @@
   <% end %>
   <% end %>
 
-  <tr>
+  <tr id="event_form_row">
   <% if @event.event_date.nil? %>
-    <td><%= f.text_field :event_date, :value => "now" %></td>
+    <td><%= f.text_field :event_date,
+                   :value => "now" %></td>
   <% else %>
-    <td><%= f.text_field :event_date, :value => @event.event_date.to_date %></td>
+    <td><%= f.text_field :event_date,
+                   :value => @event.event_date.to_date %></td>
   <% end %>
-    <td><%= f.text_field :quantity, :maxlength => 5 %></td>
-    <td><%= f.text_field :description, :maxlength => 45 %></td>
-    <td><%= f.submit "Record" %></td>
+    <td><%= f.text_field :quantity,
+                   :maxlength => 5 %></td>
+    <td><%= f.text_field :description,
+                   :maxlength => 45 %></td>
+    <td><%= f.submit "Record", :id => 'event_button' %></td>
   </tr>
 </table>
 <% end %>
 <p>
-download as <a href="/biometrics/all.csv">CSV</a>
-or <a href="/biometrics/all.xml">XML</a>.
+download as <a href="/events/all.csv">CSV</a>
+or <a href="/events/all.xml">XML</a>.

@@ -4,6 +4,8 @@ describe BiometricsController do
 
   def mock_biometric(stubs={})
     @mock_biometric ||= mock_model(Biometric, stubs).as_null_object
+    BiometricsController.stub(:authenticate_user!) { }
+    BiometricsController.stub(:current_user) { Factory(:confirmed_user) }
   end
 
   describe "GET index" do
