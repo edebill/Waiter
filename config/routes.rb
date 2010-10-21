@@ -31,8 +31,11 @@ Waiter::Application.routes.draw do |map|
     end
   end
 
-  resources :events
-
+  resources :events do
+    collection do
+      get :all
+    end
+  end
 
   # Sample resource route with options:
   #   resources :products do

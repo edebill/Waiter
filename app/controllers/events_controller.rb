@@ -15,6 +15,25 @@ class EventsController < ApplicationController
     end
   end
 
+  # GET /events/all.json
+  # GET /events/all.csv
+  def all
+    @events = Event.select("event_date, quantity, description").where(:user_id => current_user.id).order(:event_date)
+
+    respond_to do |format|
+      format.xml  { render :xml => @events }
+      format.csv  { 
+        csv = @events.collect { |e| [e.event_date, e.quantity, e.description].to_csv }
+        csv.unshift ["event date", "quantity", "description"].to_csv
+
+        render :content_type => 'text/csv', :text =>  csv.join("")
+      }
+    end
+  end
+
+
+
+
   # GET /events/1
   # GET /events/1.xml
   def show
