@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'rails', '3.0.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -23,7 +23,10 @@ gem 'devise', '1.1.3'
 
 
 group :test, :development do
-  gem 'rspec-rails', '= 2.0.0.beta.20'
+  gem 'rspec-rails', '~> 2.2.1'
+  gem 'autotest'
+  gem 'autotest-growl'
+  gem 'capybara'
   gem 'shoulda'
   gem 'factory_girl_rails'
 #  gem 'ruby-debug'
@@ -36,7 +39,7 @@ group :cucumber do
   gem 'database_cleaner'   # clean database between tests
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec-rails', '= 2.0.0.beta.20'
+  gem 'rspec-rails', '~> 2.2.1'
   gem 'spork'
 #  gem 'linecache19'
   gem 'launchy'            # can pop a browser with 'Then show me the page'

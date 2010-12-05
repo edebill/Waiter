@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100930015011) do
+ActiveRecord::Schema.define(:version => 20101031162905) do
+
+  create_table "biometric_data", :force => true do |t|
+    t.integer  "biometrics_id"
+    t.string   "type"
+    t.string   "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "biometrics", :force => true do |t|
     t.datetime "record_date"
@@ -19,6 +27,15 @@ ActiveRecord::Schema.define(:version => 20100930015011) do
     t.integer  "diastolic"
     t.integer  "bpm"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cardios", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "systolic"
+    t.integer  "diastolic"
+    t.integer  "bpm"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -57,5 +74,12 @@ ActiveRecord::Schema.define(:version => 20100930015011) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "weights", :force => true do |t|
+    t.integer  "user_id"
+    t.float    "pounds"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

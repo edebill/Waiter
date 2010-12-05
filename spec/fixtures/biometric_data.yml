@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  biometrics_id: 
+  type: MyString
+  value: MyString
+
+two:
+  biometrics_id: 
+  type: MyString
+  value: MyString
