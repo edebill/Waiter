@@ -1,0 +1,17 @@
+email = ARGV[0]
+filename = ARGV[1]
+
+user = User.find_by_email(email)
+
+csv = CSV.open(filename, { :headers => true })
+
+csv.each do |row|
+  if row["lbs"]
+    in_date = row["date"]
+    (month, day, year) = in_date.split("/")
+    puts user.biometrics.create(:record_date => Time.local(year, month, day, 8),
+                           :weight => row["lbs"]).inspect
+
+  end
+end
+   
