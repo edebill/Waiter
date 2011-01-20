@@ -55,7 +55,7 @@
     <td><%= f.text_field :quantity,
                    :maxlength => 5 %></td>
     <td><%= f.text_field :description,
-                   :maxlength => 45 %></td>
+                   :maxlength => 150, :size => 45 %></td>
     <td><%= f.submit "Record", :id => 'event_button' %></td>
   </tr>
 </table>
