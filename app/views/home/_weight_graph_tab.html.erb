@@ -2,11 +2,17 @@
 <p>
 download as: <a href="/biometrics/weight.csv">CSV</a>
     or   <a href="/biometrics/weight.xml">XML</a>
+<span style="float: right; margin-right: 50px;"><input name="graph_start" type="radio" value="<%= (Time.now - 90.days).to_i %>" onclick="show_weight_graph();" checked/> last 90 days  
+<input name="graph_start" type="radio" value="<%= (Time.now - 365.days).to_i %>" onclick="show_weight_graph();"/> last year  
+<input name="graph_start" type="radio" value="0" onclick="show_weight_graph();"/> all time
+</span>
 </p>
 <script id="source">
     function show_weight_graph() {
+        ts = $('input[name=graph_start]:radio:checked').val();
+
         console.log("rendering weight graph");
-        $.getJSON("/biometrics/weight.json", function(data) {
+        $.getJSON("/biometrics/weight.json?s=" + ts, function(data) {
             $.plot($("#placeholder"), [data], {
                 xaxis: {
                     mode: "time"

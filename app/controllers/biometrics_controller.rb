@@ -33,7 +33,17 @@ class BiometricsController < ApplicationController
   # GET /biometrics/weight.json
   # GET /biometrics/weight.csv
   def weight
-    @biometrics = Biometric.select("weight, record_date").where(:user_id => current_user.id).order(:record_date)
+    t = Biometric.arel_table
+    query = t[:user_id].eq(current_user.id)
+    if params[:s]
+      query = query.and(t[:record_date].gt(Time.at(params[:s].to_i)))
+    end
+
+    if params[:e]
+      query = query.and(t[:record_date].lt(Time.at(params[:e].to_i)))
+    end
+
+    @biometrics = Biometric.select("weight, record_date").where(query).order(:record_date)
 
     respond_to do |format|
       format.json { render :json => @biometrics.collect { |b| [b.record_date.to_i * 1000, b.weight] } }
