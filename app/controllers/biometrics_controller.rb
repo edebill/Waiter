@@ -21,7 +21,7 @@ class BiometricsController < ApplicationController
     respond_to do |format|
       format.xml  { render :xml => @biometrics }
       format.csv  { 
-        csv = @biometrics.collect { |b| [b.record_date, b.weight, b.systolic, b.diastolic, b.bpm].to_csv }
+        csv = @biometrics.collect { |b| [b.record_date.utc.strftime("%Y/%m/%d %H:%M:%S"), b.weight, b.systolic, b.diastolic, b.bpm].to_csv }
         csv.unshift ["record date","weight","systolic","diastolic","bpm"].to_csv
 
         render :content_type => 'text/csv', :text =>  csv.join("")
