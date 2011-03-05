@@ -1,13 +1,24 @@
-body {
+html,body {
+   height: 100%;
    background-color: #f0f8ff;
+}
+
+#wrap {
+   min-height: 100%;
+}
+
+#main {
+   overflow:       auto;
+   /* must be same height as the footer */
+   padding-bottom: 40px;
 }
 
 #header {
     position: relative;
-    padding: 10px;
+    padding:  10px;
 
     background-color: #e0f0ff;
-    border-bottom: 1px black solid;
+    border-bottom:    1px black solid;
 }
 
 #sitename {
@@ -35,27 +46,27 @@ div.menuitem {
 
 
 #content {
+    margin: auto;
     position: relative;
     padding: 15px;
-    padding-bottom: 30px;
     background-color: #f0f8ff;
-    min-height: 300px;
+/*    min-height: 300px;  */
     width: 700px;
 }
 
 
 #footer {
     width: 100%;
-    position: absolute;
-    bottom: 0px;
-
+    position: relative;
+    margin-top: -24px;  /*  (height + border) * -1  */
+    height: 23px;
+    clear: both;
     border-top: 1px black solid;
     background-color: #e0f0ff;
 }
 
 #copyright {
     float: right;
-
     padding-right: 15px;
     font-size: 8px;
 }
