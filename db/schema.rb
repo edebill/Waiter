@@ -31,15 +31,6 @@ ActiveRecord::Schema.define(:version => 20101031162905) do
     t.datetime "updated_at"
   end
 
-  create_table "cardios", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "systolic"
-    t.integer  "diastolic"
-    t.integer  "bpm"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "events", :force => true do |t|
     t.integer  "user_id"
     t.datetime "event_date"
@@ -74,12 +65,5 @@ ActiveRecord::Schema.define(:version => 20101031162905) do
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "weights", :force => true do |t|
-    t.integer  "user_id"
-    t.float    "pounds"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
