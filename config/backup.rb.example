@@ -36,8 +36,8 @@ Backup::Model.new(:db_backup, 'Database Backup to S3') do
     s3.secret_access_key  = '<SECRET>'
     s3.region             = 'us-east-1'
     s3.bucket             = '<BUCKET NAME>'
-    s3.path               = "/waiter/#{RAILS_ENV}"
-    s3.keep               = 5
+    s3.path               = config[RAILS_ENV]["database"]
+    s3.keep               = 10
   end
 
   compress_with Gzip do |compression|
