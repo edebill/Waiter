@@ -6,7 +6,7 @@ gem 'rails', '3.0.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-gem 'memcache-client', :require => 'memcache'
+gem 'dalli'
 
 # Use unicorn as the web server
 # gem 'unicorn'
@@ -20,7 +20,6 @@ gem 'memcache-client', :require => 'memcache'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 gem 'devise', '1.1.3'
-
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.2.1'
@@ -51,3 +50,6 @@ end
 # group :test do
 #   gem 'webrat'
 # end
+
+gem 'backup', '~> 3.0.9'
+gem 'fog', '~> 0.7.0'
