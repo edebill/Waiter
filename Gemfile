@@ -8,6 +8,8 @@ gem 'rails', '3.0.3'
 gem 'pg'
 gem 'dalli'
 
+gem 'backup-task'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
