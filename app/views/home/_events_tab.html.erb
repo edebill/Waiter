@@ -1,8 +1,8 @@
-<% last_14 = @events.reverse[0..13].reverse %>
+<% last_14 = @events[0..13] %>
 <script>
 
   function addEvent(event) {
-    $('#event_form_row').prev().after("<tr><td>" + event["created_at"] +
+    $('#event_form_row').after("<tr><td>" + event["display_time"] +
          "</td><td>" + blankIfNull(event["quantity"]) +
          "</td><td>" + blankIfNull(event["description"]) +
      "</td></tr>");
@@ -33,17 +33,6 @@
     <th>Quantity</th>
     <th>Description</th>
   </tr>
-
-  <% last_14.each do |e| %>
-  <% unless e.new_record? %>
-  <tr>
-    <td><%= e.event_date %></td>
-    <td><%= e.quantity %></td>
-    <td><%= e.description %></td>
-  </tr>
-  <% end %>
-  <% end %>
-
   <tr id="event_form_row">
   <% if @event.event_date.nil? %>
     <td><%= f.text_field :event_date,
@@ -58,6 +47,17 @@
                    :maxlength => 150, :size => 45 %></td>
     <td><%= f.submit "Record", :id => 'event_button' %></td>
   </tr>
+
+  <% last_14.each do |e| %>
+  <% unless e.new_record? %>
+  <tr>
+    <td><%= pretty_time e.event_date %></td>
+    <td><%= e.quantity %></td>
+    <td><%= e.description %></td>
+  </tr>
+  <% end %>
+  <% end %>
+
 </table>
 <% end %>
 <p>

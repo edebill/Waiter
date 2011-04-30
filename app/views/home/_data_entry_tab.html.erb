@@ -46,7 +46,7 @@
 <% last_14.each do |b| %>
   <% unless b.new_record? %>
   <tr>
-    <td><%= b.record_date.to_date %></td>
+    <td><%= pretty_date b.record_date %></td>
     <td><%= b.weight %></td>
     <td><%= b.systolic %></td>
     <td><%= b.diastolic %></td>

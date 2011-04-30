@@ -15,6 +15,9 @@
   <p><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
   <%= f.password_field :current_password %></p>
 
+  <p><%= f.label :timezone, "Time Zone" %> <br />
+  <%= f.time_zone_select :timezone %></p>
+
   <p><%= f.submit "Update" %></p>
 <% end %>
 

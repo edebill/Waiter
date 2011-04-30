@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :handle_now, :only => [ :create, :update]
 
+  include ApplicationHelper
 
   # GET /events
   # GET /events.xml
@@ -72,7 +73,12 @@ class EventsController < ApplicationController
       if @event.save
         format.html { redirect_to(root_url, :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
-        format.json { render :json => @event, :status => :created, :location => @event }
+        format.json { 
+          response = @event.attributes
+          response["display_time"] = pretty_time @event.created_at
+
+          render :json => {"event" => response }.to_json, :status => :created, :location => @event 
+        }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }

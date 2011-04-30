@@ -12,6 +12,9 @@
   <p><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></p>
 
+  <p><%= f.label :timezone, "Time Zone" %> <br />
+  <%= f.time_zone_select :timezone %></p>
+
   <p><%= f.submit "Sign up" %></p>
 <% end %>
 
