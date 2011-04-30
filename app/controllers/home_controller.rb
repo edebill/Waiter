@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
       @biometric = current_user.biometrics.build()
 
-      @events =  Event.where(:user_id => current_user.id).order('event_date asc')
+      @events =  Event.where(:user_id => current_user.id).order('event_date desc')
       @event = current_user.events.build()
     else
 

@@ -7,4 +7,13 @@ module ApplicationHelper
       "#{start}&mdash;#{now_year}".html_safe
     end
   end
+
+  def pretty_date(time)
+    time.strftime("%m/%d/%Y")
+  end
+
+  def pretty_time(time)
+    time.strftime("%m/%d/%Y %I:%M %p")
+  end
+
 end
