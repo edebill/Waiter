@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
 
   protected
   def set_time_zone
-    Time.zone = current_user.timezone if current_user
+    Time.zone = current_user.timezone if (current_user && current_user.timezone)
   end
 end
