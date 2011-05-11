@@ -27,27 +27,27 @@ group :test, :development do
   gem 'rspec-rails', '~> 2.2.1'
   gem 'autotest'
   gem 'autotest-growl'
-  gem 'capybara'
+#  gem 'capybara'
   gem 'shoulda'
   gem 'factory_girl_rails'
 #  gem 'ruby-debug'
   gem 'email_spec'
-  gem 'launchy'            # can pop a browser with 'Then show me the page'
+#  gem 'launchy'            # can pop a browser with 'Then show me the page'
 end
 
-group :cucumber do
-  gem 'capybara'           # better than webrat
-  gem 'database_cleaner'   # clean database between tests
-  gem 'cucumber-rails'
-  gem 'cucumber'
-  gem 'rspec-rails', '~> 2.2.1'
-  gem 'spork'
+#group :cucumber do
+#  gem 'capybara'           # better than webrat
+#  gem 'database_cleaner'   # clean database between tests
+#  gem 'cucumber-rails'
+#  gem 'cucumber'
+#  gem 'rspec-rails', '~> 2.2.1'
+#  gem 'spork'
 #  gem 'linecache19'
-  gem 'launchy'            # can pop a browser with 'Then show me the page'
-  gem 'factory_girl_rails'
+#  gem 'launchy'            # can pop a browser with 'Then show me the page'
+#  gem 'factory_girl_rails'
 #  gem 'ruby-debug'
-  gem 'email_spec'
-end
+#  gem 'email_spec'
+#end
 
 # group :test do
 #   gem 'webrat'
