@@ -1,9 +1,9 @@
-<% last_14 = @biometrics.reverse[0..13].reverse %>
+<% last_14 = @biometrics.reverse[0..13] %>
 <script>
 
   function addBiometric(biometric) {
 
-    $('#biometric_form_row').prev().after("<tr><td>" + formatDate(biometric["record_date"]) +
+    $('#biometric_form_row').after("<tr><td>" + formatDate(biometric["record_date"]) +
          "</td><td>" + blankIfNull(biometric["weight"]) +
          "</td><td>" + blankIfNull(biometric["systolic"]) +
          "</td><td>" + blankIfNull(biometric["diastolic"]) +
@@ -43,18 +43,6 @@
     <td>BPM</td>
     <td></td>
   </tr>
-<% last_14.each do |b| %>
-  <% unless b.new_record? %>
-  <tr>
-    <td><%= pretty_date b.record_date %></td>
-    <td><%= b.weight %></td>
-    <td><%= b.systolic %></td>
-    <td><%= b.diastolic %></td>
-    <td><%= b.bpm %></td>
-    <td><%= link_to "edit", b %></td>
-  </tr>
-  <% end %>
-<% end %>
   <tr id="biometric_form_row">
   <% if @biometric.record_date.nil? %>
     <td><%= f.text_field :record_date, :value => "now" %></td>
@@ -67,6 +55,18 @@
     <td><%= f.text_field :bpm, :maxlength => 5 %></td>
     <td><%= f.submit "Record", :id => "biometric_button" %></td>
   </tr>
+<% last_14.each do |b| %>
+  <% unless b.new_record? %>
+  <tr>
+    <td><%= pretty_date b.record_date %></td>
+    <td><%= b.weight %></td>
+    <td><%= b.systolic %></td>
+    <td><%= b.diastolic %></td>
+    <td><%= b.bpm %></td>
+    <td><%= link_to "edit", b %></td>
+  </tr>
+  <% end %>
+<% end %>
 </table>
 <% end %>
 <p>
