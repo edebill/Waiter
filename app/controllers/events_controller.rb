@@ -38,7 +38,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.xml
   def show
-    @event = Event.where(:user_id => current_user.id, :id => params[:id])
+    @event = Event.where(:user_id => current_user.id, :id => params[:id]).first
 
     respond_to do |format|
       format.html # show.html.erb
@@ -61,7 +61,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
-    @event = Event.where(:user_id => current_user.id, :id => params[:id])
+    @event = Event.where(:user_id => current_user.id, :id => params[:id]).first
   end
 
   # POST /events
@@ -75,7 +75,7 @@ class EventsController < ApplicationController
         format.xml  { render :xml => @event, :status => :created, :location => @event }
         format.json { 
           response = @event.attributes
-          response["display_time"] = pretty_time @event.created_at
+          response["display_time"] = pretty_time @event.event_date
 
           render :json => {"event" => response }.to_json, :status => :created, :location => @event 
         }
@@ -106,11 +106,14 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.xml
   def destroy
-    @event = Event.find(params[:id])
+    @event = Event.where(:user_id => current_user.id, :id => params[:id]).first
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to(events_url) }
+      format.html {
+        flash[:info] = 'Event deleted'
+        redirect_to(root_url)
+      }
       format.xml  { head :ok }
     end
   end

@@ -9,11 +9,11 @@ module ApplicationHelper
   end
 
   def pretty_date(time)
-    time.strftime("%m/%d/%Y")
+    time.strftime("%Y-%m-%d")
   end
 
   def pretty_time(time)
-    time.strftime("%m/%d/%Y %I:%M %p")
+    time.strftime("%Y-%m-%d %I:%M %p")
   end
 
 end

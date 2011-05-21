@@ -46,6 +46,7 @@
     <td><%= f.text_field :description,
                    :maxlength => 150, :size => 45 %></td>
     <td><%= f.submit "Record", :id => 'event_button' %></td>
+    <td></td>
   </tr>
 
   <% last_14.each do |e| %>
@@ -54,6 +55,7 @@
     <td><%= pretty_time e.event_date %></td>
     <td><%= e.quantity %></td>
     <td><%= e.description %></td>
+    <td><%= link_to "edit", edit_event_url(e) %></td>
   </tr>
   <% end %>
   <% end %>
