@@ -14,3 +14,10 @@ Factory.define(:biometric) do |f|
   f.association :user
   f.weight 1
 end
+
+Factory.define(:event) do |f|
+  f.event_date Time.zone.now
+  f.description "Just a simple description"
+  f.association :user
+  f.quantity 1
+end

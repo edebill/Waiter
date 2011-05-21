@@ -2,69 +2,63 @@ require 'spec_helper'
 
 describe EventsController do
 
-  def mock_event(stubs={})
-    @mock_event ||= mock_model(Event, stubs).as_null_object
+  before :each do
+    @event = Factory.create(:event)
+    @user = @event.user
+    @user.confirm!
+    sign_in @user
   end
-
   describe "GET index" do
     it "assigns all events as @events" do
-      Event.stub(:all) { [mock_event] }
       get :index
-      assigns(:events).should eq([mock_event])
+      assigns(:events).should == [@event]
     end
   end
 
   describe "GET show" do
     it "assigns the requested event as @event" do
-      Event.stub(:find).with("37") { mock_event }
-      get :show, :id => "37"
-      assigns(:event).should be(mock_event)
+      get :show, :id => @event.id
+      assigns(:event).should == @event
     end
   end
 
   describe "GET new" do
     it "assigns a new event as @event" do
-      Event.stub(:new) { mock_event }
       get :new
-      assigns(:event).should be(mock_event)
+      assigns(:event)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested event as @event" do
-      Event.stub(:find).with("37") { mock_event }
-      get :edit, :id => "37"
-      assigns(:event).should be(mock_event)
+      get :edit, :id => @event.id
+      assigns(:event).should == @event
     end
   end
 
   describe "POST create" do
+    before :each do
+      @event = Factory.build(:event, :user => @user)
+      sign_in @user
+    end
+      
 
     describe "with valid params" do
       it "assigns a newly created event as @event" do
-        Event.stub(:new).with({'these' => 'params'}) { mock_event(:save => true) }
-        post :create, :event => {'these' => 'params'}
-        assigns(:event).should be(mock_event)
+        post :create, :event => @event.attributes
+        assigns(:event).quantity.should == @event.quantity
       end
 
       it "redirects to the created event" do
-        Event.stub(:new) { mock_event(:save => true) }
-        post :create, :event => {}
-        response.should redirect_to(event_url(mock_event))
+        post :create, :event => @event.attributes
+        response.should redirect_to(root_url)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved event as @event" do
-        Event.stub(:new).with({'these' => 'params'}) { mock_event(:save => false) }
-        post :create, :event => {'these' => 'params'}
-        assigns(:event).should be(mock_event)
-      end
-
-      it "re-renders the 'new' template" do
-        Event.stub(:new) { mock_event(:save => false) }
-        post :create, :event => {}
-        response.should render_template("new")
+      it "sets the flash" do
+        post :create, :event => @event.attributes
+        response.should set_the_flash
       end
     end
 
@@ -74,35 +68,30 @@ describe EventsController do
 
     describe "with valid params" do
       it "updates the requested event" do
-        Event.should_receive(:find).with("37") { mock_event }
-        mock_event.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, :id => "37", :event => {'these' => 'params'}
+        @event.quantity += 1
+        put :update, :id => @event.id, :event => @event.attributes
+        Event.find(@event.id).quantity.should == @event.quantity
       end
 
-      it "assigns the requested event as @event" do
-        Event.stub(:find) { mock_event(:update_attributes => true) }
-        put :update, :id => "1"
-        assigns(:event).should be(mock_event)
-      end
-
-      it "redirects to the event" do
-        Event.stub(:find) { mock_event(:update_attributes => true) }
-        put :update, :id => "1"
-        response.should redirect_to(event_url(mock_event))
+      it "redirects to the root page" do
+        put :update, :id => @event.id, :event => @event.attributes
+        response.should redirect_to(event_url(@event))
       end
     end
 
     describe "with invalid params" do
-      it "assigns the event as @event" do
-        Event.stub(:find) { mock_event(:update_attributes => false) }
-        put :update, :id => "1"
-        assigns(:event).should be(mock_event)
+      before :each do
+        @event.quantity = "a"
       end
 
-      it "re-renders the 'edit' template" do
-        Event.stub(:find) { mock_event(:update_attributes => false) }
-        put :update, :id => "1"
-        response.should render_template("edit")
+      it "assigns the event as @event" do
+        put :update, :id => @event.id, :event => @event.attributes
+        assigns(:event)
+      end
+
+      it "sets the flash" do
+        put :update, :id => @event.id, :event => @event.attributes
+        response.should set_the_flash
       end
     end
 
@@ -110,15 +99,13 @@ describe EventsController do
 
   describe "DELETE destroy" do
     it "destroys the requested event" do
-      Event.should_receive(:find).with("37") { mock_event }
-      mock_event.should_receive(:destroy)
-      delete :destroy, :id => "37"
+      delete :destroy, :id => @event.id
+      Event.where(:id => @event.id).count.should == 0
     end
 
     it "redirects to the events list" do
-      Event.stub(:find) { mock_event }
-      delete :destroy, :id => "1"
-      response.should redirect_to(events_url)
+      delete :destroy, :id => @event.id
+      response.should redirect_to(root_url)
     end
   end
 
