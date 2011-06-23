@@ -5,7 +5,7 @@
     $('#event_form_row').after("<tr><td>" + event["display_time"] +
          "</td><td>" + blankIfNull(event["quantity"]) +
          "</td><td>" + blankIfNull(event["description"]) +
-     "</td></tr>");
+     "</td><td><a href=\"/events/" + event["id"] + "/edit\">edit</a></td></tr>");
   }
 
   function clearEventForm() {
