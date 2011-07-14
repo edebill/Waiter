@@ -71,3 +71,7 @@ div.menuitem {
     font-size: 8px;
 }
 
+td.timestamp {
+    width: 150px;
+    padding-right: 15px;
+}

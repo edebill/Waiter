@@ -53,7 +53,7 @@
   <% last_14.each do |e| %>
   <% unless e.new_record? %>
   <tr>
-    <td><%= pretty_time e.event_date %></td>
+    <td class="timestamp"><%= pretty_time e.event_date %></td>
     <td><%= e.quantity %></td>
     <td><%= e.description %></td>
     <td><%= link_to "edit", edit_event_url(e) %></td>

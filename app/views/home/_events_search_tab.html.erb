@@ -1,0 +1,50 @@
+<script>
+
+  function addSearchEvents(events) {
+    console.log(events);
+    for(i = 0; i < events.length; i++){
+      addSearchEvent(events[i]);
+    }
+  }
+
+  function addSearchEvent(event) {
+    console.log("adding event");
+    console.log(event);
+    $('#results_table').children().last().after("<tr class=\"search_result\"><td class=\"timestamp\">" + event["display_time"] +
+         "</td><td>" + blankIfNull(event["quantity"]) +
+         "</td><td>" + blankIfNull(event["description"]) +
+     "</td><td><a href=\"/events/" + event["id"] + "/edit\">edit</a></td></tr>");
+  }
+
+  function clearSearchResults() {
+    $('.search_result').remove();
+  }
+
+
+  $(document).ready(function() {
+    $('#event_search_button').bind('click', function () { 
+        $('#event_search_button').attr('disabled', true);
+        $.get("/events/search.json",
+              $("#search_form").serialize(),function(data){
+                clearSearchResults();
+                console.log(data['events']);
+                $('#event_search_button').attr('disabled', false);
+                addSearchEvents(data['events']);
+                $('#results_table').slideDown();
+              }, "json");
+        return false;
+    });
+  });
+
+</script>
+<form id="search_form" action="/events/search.json" method="get">
+    <input type="text" name="q" />
+    <input type="submit" id="event_search_button" value="Search" />
+</form>
+<table class="event_data" id="results_table" style="display:none">
+  <tr>
+    <th>Date</th>
+    <th>Quantity</th>
+    <th>Description</th>
+  </tr>
+</table>

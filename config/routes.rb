@@ -34,6 +34,7 @@ Waiter::Application.routes.draw do |map|
   resources :events do
     collection do
       get :all
+      get :search
     end
   end
 

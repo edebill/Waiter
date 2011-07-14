@@ -16,6 +16,19 @@ class EventsController < ApplicationController
     end
   end
 
+  def search
+    @events = Event.where("user_id = ? and description like ?", current_user.id, "%#{params[:q]}%").order("event_date desc")
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json {
+        response = @events.map { |e| e.attributes.merge({"display_time" => pretty_time(e.event_date)}) }
+        render :json => {"events" => response }.to_json
+      }
+    end
+  end
+
+
+
   # GET /events/all.json
   # GET /events/all.csv
   def all
