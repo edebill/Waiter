@@ -22,8 +22,9 @@
 
   $(document).ready(function() {
     $('#biometric_button').bind('click', function () { 
+        $('#biometric_button').attr('disabled', true);
         $.post("/biometrics", $("#new_biometric").serialize(),function(data){
-           console.log(data);
+           $('#biometric_button').attr('disabled', false);
            addBiometric(data['biometric']);
            clearBiometricForm();
           }, "json");

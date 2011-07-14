@@ -15,8 +15,9 @@
 
   $(document).ready(function() {
     $('#event_button').bind('click', function () { 
+        $('#event_button').attr('disabled', true);
         $.post("/events", $("#new_event").serialize(),function(data){
-           console.log(data);
+           $('#event_button').attr('disabled', false);
            addEvent(data['event']);
            clearEventForm();
           }, "json");
