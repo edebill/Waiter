@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.7'
+gem 'rails', '3.0.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -21,7 +21,7 @@ gem 'backup-task'
 # gem 'nokogiri', '1.4.1'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
-gem 'devise', '~> 1.3.0'
+gem 'devise', '~> 1.5.0'
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.2.1'
