@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.11'
+gem 'rails', '3.1.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -21,10 +21,10 @@ gem 'backup-task'
 # gem 'nokogiri', '1.4.1'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
-gem 'devise', '~> 1.5.0'
+gem 'devise', '~> 2.0.0'
 
 group :test, :development do
-  gem 'rspec-rails', '~> 2.2.1'
+  gem 'rspec-rails', '~> 2.8.1'
   gem 'autotest'
   gem 'autotest-growl'
 #  gem 'capybara'
@@ -40,7 +40,7 @@ end
 #  gem 'database_cleaner'   # clean database between tests
 #  gem 'cucumber-rails'
 #  gem 'cucumber'
-#  gem 'rspec-rails', '~> 2.2.1'
+#  gem 'rspec-rails', '~> 2.8.1'
 #  gem 'spork'
 #  gem 'linecache19'
 #  gem 'launchy'            # can pop a browser with 'Then show me the page'

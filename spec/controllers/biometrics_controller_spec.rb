@@ -56,13 +56,6 @@ describe BiometricsController do
       end
     end
 
-    describe "with invalid params" do
-      it "sets the flash" do
-        post :create, :biometric => @biometric.attributes
-        response.should set_the_flash
-      end
-    end
-
   end
 
   describe "PUT update" do
@@ -90,10 +83,6 @@ describe BiometricsController do
         assigns(:biometric)
       end
 
-      it "sets the flash" do
-        put :update, :id => @biometric.id, :biometric => @biometric.attributes
-        response.should set_the_flash
-      end
     end
 
   end

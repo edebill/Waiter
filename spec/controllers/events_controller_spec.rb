@@ -41,7 +41,6 @@ describe EventsController do
       @event = Factory.build(:event, :user => @user)
       sign_in @user
     end
-      
 
     describe "with valid params" do
       it "assigns a newly created event as @event" do
@@ -52,13 +51,6 @@ describe EventsController do
       it "redirects to the created event" do
         post :create, :event => @event.attributes
         response.should redirect_to(root_url)
-      end
-    end
-
-    describe "with invalid params" do
-      it "sets the flash" do
-        post :create, :event => @event.attributes
-        response.should set_the_flash
       end
     end
 
@@ -89,10 +81,6 @@ describe EventsController do
         assigns(:event)
       end
 
-      it "sets the flash" do
-        put :update, :id => @event.id, :event => @event.attributes
-        response.should set_the_flash
-      end
     end
 
   end
