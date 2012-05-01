@@ -54,4 +54,4 @@ end
 # end
 
 gem 'backup', '~> 3.0.9'
-gem 'fog', '~> 0.7.0'
+gem 'fog', '~> 0.11.0'
