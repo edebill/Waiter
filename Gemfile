@@ -53,5 +53,5 @@ end
 #   gem 'webrat'
 # end
 
-gem 'backup', '~> 3.0.9'
-gem 'fog', '~> 0.11.0'
+gem 'backup', '~> 3.0.24'
+gem 'fog', '~> 1.1.0'
