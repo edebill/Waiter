@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -24,12 +24,12 @@ gem 'backup-task'
 gem 'devise', '~> 2.0.0'
 
 group :test, :development do
-  gem 'rspec-rails', '~> 2.8.1'
+  gem 'rspec-rails'
   gem 'autotest'
   gem 'autotest-growl'
 #  gem 'capybara'
   gem 'shoulda'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', :require => false
 #  gem 'ruby-debug'
   gem 'email_spec'
 #  gem 'launchy'            # can pop a browser with 'Then show me the page'
@@ -40,7 +40,7 @@ end
 #  gem 'database_cleaner'   # clean database between tests
 #  gem 'cucumber-rails'
 #  gem 'cucumber'
-#  gem 'rspec-rails', '~> 2.8.1'
+#  gem 'rspec-rails'
 #  gem 'spork'
 #  gem 'linecache19'
 #  gem 'launchy'            # can pop a browser with 'Then show me the page'
