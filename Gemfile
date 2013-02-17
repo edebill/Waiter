@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '~> 3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,8 +25,8 @@ gem 'devise', '~> 2.0.0'
 
 group :test, :development do
   gem 'rspec-rails'
-  gem 'autotest'
-  gem 'autotest-growl'
+#  gem 'autotest'
+#  gem 'autotest-growl'
 #  gem 'capybara'
   gem 'shoulda'
   gem 'factory_girl_rails', :require => false
